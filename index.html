@@ -67,11 +67,19 @@
             content: ''; position: absolute; left: 0; top: 8px; bottom: 0;
             width: 2px; background: #eeeeee;
         }
+
+
         .timeline-dot {
-            position: absolute; left: -6px; top: 6px;
-            width: 14px; height: 14px; border-radius: 50%;
-            background: #006b5c; border: 3px solid #fff;
+            position: absolute;
+            left: -38px; /* Changed from -6px to -38px */
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #006b5c;
+            border: 3px solid #fff;
         }
+        
         .project-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .project-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,191,166,0.14); }
         .nav-link { color: #64748b; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; position: relative; }
