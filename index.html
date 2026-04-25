@@ -528,7 +528,7 @@
             </div>
 
             <div class="bg-surface-low rounded-2xl border p-10 reveal">
-                <form id="contact-form" action="https://formspree.io/f/mdayjzwq" method="POST" class="space-y-6"></form>
+                <form id="contact-form" action="https://formspree.io/f/mdayjzwq" method="POST" class="space-y-6">
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 block">Name</label>
@@ -695,6 +695,7 @@
                 submitBtn.disabled = false;
             }
         });
+
         // 7. DEVICON FALLBACK
         document.querySelectorAll('img').forEach(img => {
             img.onerror = function() {
