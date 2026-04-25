@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdelmohaimen Mohamed | Senior DevOps Engineer</title>
+    
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#006b5c",
+                        "primary-container": "#00bfa6",
+                        "primary-light": "#e8f8f5",
+                        surface: "#f9f9f9",
+                        "surface-low": "#f3f3f4",
+                        "surface-container": "#eeeeee",
+                        "on-surface": "#1a1c1c",
+                        "on-surface-variant": "#3c4a46",
+                        "outline-variant": "#bbcac5",
+                    },
+                    fontFamily: {
+                        satoshi: ["Satoshi", "Manrope", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"],
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #fff; color: #1a1c1c; overflow-x: hidden; }
+        .gradient-primary { background: linear-gradient(135deg, #006b5c 0%, #00bfa6 100%); }
+        .ghost-shadow { box-shadow: 0 8px 40px rgba(0, 191, 166, 0.08); }
+        .section-padding { padding-top: clamp(64px, 8vw, 120px); padding-bottom: clamp(64px, 8vw, 120px); }
+        .editorial-label {
+            color: #00bfa6; font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 0.1em; display: flex; align-items: center; gap: 0.5rem;
+            text-transform: uppercase;
+        }
+        .dot-pulse {
+            width: 8px; height: 8px; background: #10b981; border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(16,185,129,0); }
+            100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+        }
+        .dev-icon { width: 22px; height: 22px; filter: grayscale(1) opacity(0.6); transition: filter 0.3s; }
+        .dev-icon:hover, .skill-row:hover .dev-icon { filter: grayscale(0) opacity(1); }
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .tag-pill {
+            background: #e8f8f5; color: #007a69; border-radius: 9999px;
+            font-size: 11px; font-weight: 700; padding: 3px 10px;
+        }
+        .timeline-line { position: relative; padding-left: 2rem; }
+        .timeline-line::before {
+            content: ''; position: absolute; left: 0; top: 8px; bottom: 0;
+            width: 2px; background: #eeeeee;
+        }
+        .timeline-dot {
+            position: absolute; left: -6px; top: 6px;
+            width: 14px; height: 14px; border-radius: 50%;
+            background: #006b5c; border: 3px solid #fff;
+        }
+        .project-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,191,166,0.14); }
+        .nav-link { color: #64748b; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; position: relative; }
+        .nav-link:hover, .nav-link.active { color: #00bfa6; }
+        .nav-link.active::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 100%;
+            height: 2px; background: #00bfa6;
+        }
+        html { scroll-behavior: smooth; }
+        #word-rotator { transition: opacity 0.3s ease; }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-[#f0f0f0]">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="font-satoshi font-bold text-xl text-on-surface">Abdelmohaimen</a>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" class="nav-link font-satoshi">About</a>
+                <a href="#projects" class="nav-link font-satoshi">Projects</a>
+                <a href="#experience" class="nav-link font-satoshi">Experience</a>
+                <a href="#skills" class="nav-link font-satoshi">Skills</a>
+                <a href="#contact" class="nav-link font-satoshi">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="#contact" class="gradient-primary text-white font-satoshi font-bold px-5 py-2 rounded-lg text-sm transition-transform hover:scale-105 active:scale-95">Hire Me</a>
+                <button id="mobile-menu-btn" class="md:hidden text-slate-600">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-surface-container p-6 space-y-4 shadow-xl">
+            <a href="#about" class="block nav-link font-satoshi">About</a>
+            <a href="#projects" class="block nav-link font-satoshi">Projects</a>
+            <a href="#experience" class="block nav-link font-satoshi">Experience</a>
+            <a href="#skills" class="block nav-link font-satoshi">Skills</a>
+            <a href="#contact" class="block nav-link font-satoshi">Contact</a>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex items-center bg-white relative overflow-hidden px-6">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-container opacity-10 blur-[120px] rounded-full -mr-48 -mt-48"></div>
+        
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center w-full">
+            <div class="reveal">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="editorial-label">—— WELCOME</span>
+                    <div class="flex items-center gap-2 bg-primary-light px-3 py-1 rounded-full">
+                        <div class="dot-pulse"></div>
+                        <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Available for new projects</span>
+                    </div>
+                </div>
+                
+                <h1 class="font-satoshi text-6xl md:text-7xl font-extrabold tracking-tighter leading-tight mb-4">
+                    Hi, I'm <span class="text-primary">Abdelmohaimen</span>
+                </h1>
+                
+                <p class="text-2xl md:text-3xl font-medium text-slate-700 mb-6">
+                    I build things for <span id="word-rotator" class="text-primary font-bold">the Web</span>
+                </p>
+                
+                <p class="text-slate-500 text-lg max-w-md leading-relaxed mb-10">
+                    Senior SRE & DevOps Engineer with 7+ years of experience. I architect resilient cloud systems and turn manual workflows into elegant, automated CI/CD pipelines.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#" class="gradient-primary text-white font-satoshi font-bold px-8 py-4 rounded-lg ghost-shadow hover:opacity-90 transition-all">Download CV</a>
+                    <a href="#contact" class="border-2 border-primary-container text-primary font-satoshi font-bold px-8 py-4 rounded-lg hover:bg-primary-light transition-all">Contact Me</a>
+                </div>
+            </div>
+
+            <div class="hidden md:block reveal">
+                <div class="bg-white border border-surface-container ghost-shadow rounded-2xl p-8 max-w-sm ml-auto">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-full border-2 border-primary-container flex items-center justify-center bg-primary-light text-primary font-satoshi font-bold text-2xl">
+                            AM
+                        </div>
+                        <div>
+                            <h3 class="font-satoshi font-bold text-lg">Abdelmohaimen</h3>
+                            <p class="text-sm text-slate-500">Senior DevOps Engineer</p>
+                        </div>
+                    </div>
+                    <div class="h-px bg-surface-container mb-6"></div>
+                    <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-4">Core Stack</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-surface-low border border-surface-container rounded-xl p-3 flex items-center gap-2">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" class="w-5 h-5" alt="AWS">
+                            <span class="text-xs font-bold">Cloud</span>
+                        </div>
+                        <div class="bg-surface-low border border-surface-container rounded-xl p-3 flex items-center gap-2">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="w-5 h-5" alt="K8s">
+                            <span class="text-xs font-bold">K8s</span>
+                        </div>
+                        <div class="bg-surface-low border border-surface-container rounded-xl p-3 flex items-center gap-2">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" class="w-5 h-5" alt="Terraform">
+                            <span class="text-xs font-bold">IaC</span>
+                        </div>
+                        <div class="bg-surface-low border border-surface-container rounded-xl p-3 flex items-center gap-2">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-5 h-5" alt="Python">
+                            <span class="text-xs font-bold">Python</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-surface-low border-y border-surface-container py-12 px-6">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center md:border-r border-surface-container">
+                <span class="stat-counter font-satoshi font-extrabold text-5xl text-on-surface" data-target="7">0+</span>
+                <p class="text-xs uppercase tracking-widest text-slate-500 font-bold mt-2">Years Experience</p>
+            </div>
+            <div class="text-center md:border-r border-surface-container">
+                <span class="stat-counter font-satoshi font-extrabold text-5xl text-on-surface" data-target="25">0+</span>
+                <p class="text-xs uppercase tracking-widest text-slate-500 font-bold mt-2">Cloud Migrations</p>
+            </div>
+            <div class="text-center">
+                <span class="stat-counter font-satoshi font-extrabold text-5xl text-on-surface" data-target="15">0+</span>
+                <p class="text-xs uppercase tracking-widest text-slate-500 font-bold mt-2">Certifications</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <span class="editorial-label mb-4">—— ABOUT ME</span>
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                <div class="reveal">
+                    <h2 class="font-satoshi text-4xl font-extrabold tracking-tight mb-8">Engineering reliability with precision & purpose.</h2>
+                    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                        I'm a DevOps enthusiast who obsesses over the infrastructure details that ensure 99.99% uptime. From zero-downtime deployments to cost-optimized cloud architectures, I believe infrastructure should be as clean and version-controlled as the code it supports.
+                    </p>
+                    <p class="text-slate-600 text-lg leading-relaxed">
+                        Currently based in London, I help global enterprises like British Telecom and AWS scale their cloud presence. My focus is on building "Golden Paths" for developers—removing friction through automation while enforcing security and compliance at every stage of the lifecycle.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 reveal">
+                    <div class="bg-surface border border-surface-container rounded-2xl p-6 hover:bg-white hover:shadow-md transition-all">
+                        <span class="material-symbols-outlined text-primary text-3xl mb-3">speed</span>
+                        <h4 class="font-satoshi font-bold mb-1">Performance</h4>
+                        <p class="text-sm text-slate-500">Latency reduction & resource optimization.</p>
+                    </div>
+                    <div class="bg-surface border border-surface-container rounded-2xl p-6 hover:bg-white hover:shadow-md transition-all">
+                        <span class="material-symbols-outlined text-primary text-3xl mb-3">security</span>
+                        <h4 class="font-satoshi font-bold mb-1">Security First</h4>
+                        <p class="text-sm text-slate-500">IAM best practices & automated hardening.</p>
+                    </div>
+                    <div class="bg-surface border border-surface-container rounded-2xl p-6 hover:bg-white hover:shadow-md transition-all">
+                        <span class="material-symbols-outlined text-primary text-3xl mb-3">terminal</span>
+                        <h4 class="font-satoshi font-bold mb-1">IaC Expert</h4>
+                        <p class="text-sm text-slate-500">Terraform & CloudFormation at scale.</p>
+                    </div>
+                    <div class="bg-surface border border-surface-container rounded-2xl p-6 hover:bg-white hover:shadow-md transition-all">
+                        <span class="material-symbols-outlined text-primary text-3xl mb-3">sync_alt</span>
+                        <h4 class="font-satoshi font-bold mb-1">GitOps</h4>
+                        <p class="text-sm text-slate-500">ArgoCD & GitLab CI automation flow.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section-padding px-6 bg-surface-low">
+        <div class="max-w-7xl mx-auto">
+            <span class="editorial-label mb-4">—— CASE STUDIES</span>
+            <h2 class="font-satoshi text-4xl font-extrabold tracking-tight mb-2">Automated Infrastructure Work</h2>
+            <p class="text-slate-500 mb-12">Selected technical solutions delivered for scale.</p>
+            
+            <div class="bg-white rounded-2xl border border-surface-container ghost-shadow overflow-hidden flex flex-col md:flex-row mb-12 reveal">
+                <div class="md:w-3/5 bg-primary/5 p-8 flex items-center justify-center">
+                    <div class="w-full max-w-md bg-slate-800 rounded-t-xl overflow-hidden shadow-2xl">
+                        <div class="h-8 bg-slate-900 flex items-center px-4 gap-2">
+                            <div class="w-2 h-2 rounded-full bg-[#ff5f57]"></div>
+                            <div class="w-2 h-2 rounded-full bg-[#ffbd2e]"></div>
+                            <div class="w-2 h-2 rounded-full bg-[#28ca41]"></div>
+                            <div class="ml-4 bg-slate-700 h-4 rounded px-3 w-40"></div>
+                        </div>
+                        <div class="p-4 grid grid-cols-3 gap-3 bg-white min-h-[200px]">
+                            <div class="bg-slate-50 rounded p-2 space-y-2">
+                                <div class="h-2 w-8 bg-slate-200 rounded"></div>
+                                <div class="h-10 bg-white rounded border border-slate-100 p-1"><div class="h-full w-full bg-slate-50 rounded"></div></div>
+                                <div class="h-10 bg-white rounded border border-slate-100 p-1"><div class="h-full w-full bg-slate-50 rounded"></div></div>
+                            </div>
+                            <div class="bg-slate-50 rounded p-2 space-y-2">
+                                <div class="h-2 w-10 bg-slate-200 rounded"></div>
+                                <div class="h-10 bg-white rounded border border-slate-100 p-1"><div class="h-full w-full bg-primary/10 rounded"></div></div>
+                            </div>
+                            <div class="bg-slate-50 rounded p-2 space-y-2">
+                                <div class="h-2 w-8 bg-slate-200 rounded"></div>
+                                <div class="h-10 bg-white border-l-2 border-green-400 p-1"><div class="h-full w-full bg-slate-50 rounded"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/5 p-10 flex flex-col justify-center gap-4">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag-pill">AWS Step Functions</span>
+                        <span class="tag-pill">Python</span>
+                        <span class="tag-pill">Packer</span>
+                    </div>
+                    <h3 class="font-satoshi font-extrabold text-2xl">Golden AMI Factory</h3>
+                    <p class="text-slate-600">Built a fully automated pipeline for hardening base images. Integrated vulnerability scanning, CIS compliance checks, and cross-account distribution, reducing security patching time by 60%.</p>
+                    <div class="flex gap-4">
+                        <button class="gradient-primary text-white text-sm font-bold px-6 py-2 rounded-lg">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="project-card bg-white rounded-xl border-t-4 border-primary-container ghost-shadow p-8 reveal" data-delay="100">
+                    <div class="h-24 flex items-end mb-6">
+                        <svg class="w-full h-12" viewBox="0 0 100 20">
+                            <path d="M0 15 Q 10 5, 20 12 T 40 8 T 60 14 T 80 5 T 100 10" fill="none" stroke="#00bfa6" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <h4 class="font-satoshi font-bold text-xl mb-2">Fintech EKS Migration</h4>
+                    <p class="text-sm text-slate-500 mb-4">Migrated monolithic financial services to microservices on EKS using Terraform. Reduced deployment cycles from weekly to multiple times per day.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tag-pill">Terraform</span>
+                        <span class="tag-pill">EKS</span>
+                        <span class="tag-pill">Istio</span>
+                    </div>
+                    <a href="#" class="text-primary font-bold text-sm">Case Study →</a>
+                </div>
+
+                <div class="project-card bg-white rounded-xl border-t-4 border-primary-container ghost-shadow p-8 reveal" data-delay="200">
+                    <div class="bg-slate-900 rounded-lg p-3 mb-6 font-mono text-[10px] text-green-400">
+                        <span class="text-blue-400">resource</span> "aws_instance" "web" {<br>
+                        &nbsp;&nbsp;ami = data.aws_ami.golden.id<br>
+                        &nbsp;&nbsp;instance_type = <span class="text-orange-400">"t3.medium"</span><br>
+                        }
+                    </div>
+                    <h4 class="font-satoshi font-bold text-xl mb-2">Reusable IaC Library</h4>
+                    <p class="text-sm text-slate-500 mb-4">Created a library of internal Terraform modules used by 15+ engineering teams, ensuring standard VPC, RDS, and ECS configurations across the company.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tag-pill">IaC</span>
+                        <span class="tag-pill">AWS</span>
+                        <span class="tag-pill">Governance</span>
+                    </div>
+                    <a href="#" class="text-primary font-bold text-sm">Case Study →</a>
+                </div>
+
+                <div class="project-card bg-white rounded-xl border-t-4 border-primary-container ghost-shadow p-8 reveal" data-delay="300">
+                    <div class="grid grid-cols-2 gap-2 mb-6 opacity-30">
+                        <div class="h-10 bg-slate-100 rounded"></div>
+                        <div class="h-10 bg-slate-100 rounded"></div>
+                        <div class="h-10 bg-slate-100 rounded"></div>
+                        <div class="h-10 bg-slate-100 rounded"></div>
+                    </div>
+                    <h4 class="font-satoshi font-bold text-xl mb-2">Observability Hub</h4>
+                    <p class="text-sm text-slate-500 mb-4">Deployed a centralized ELK and Prometheus/Grafana stack with custom SLI/SLO dashboards, providing real-time visibility into distributed systems.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tag-pill">Grafana</span>
+                        <span class="tag-pill">ELK</span>
+                        <span class="tag-pill">SLOs</span>
+                    </div>
+                    <a href="#" class="text-primary font-bold text-sm">Case Study →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section-padding px-6 bg-white">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+            <div>
+                <span class="editorial-label mb-6">—— PROFESSIONAL EXPERIENCE</span>
+                <div class="timeline-line">
+                    <div class="mb-12 reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-satoshi font-bold text-lg">Cloud DevOps Engineer</h3>
+                            <span class="text-xs font-bold text-slate-400">2025 — Present</span>
+                        </div>
+                        <p class="text-primary font-bold text-sm mb-3">British Telecom (BT), UK</p>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">Built Python-based automation for IAM and account provisioning. Led the Golden AMI strategy and migrated CI systems to GitLab Runner on EKS.</p>
+                        <div class="flex gap-2">
+                            <span class="tag-pill">Python</span>
+                            <span class="tag-pill">Terraform</span>
+                            <span class="tag-pill">EKS</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-12 reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-satoshi font-bold text-lg">Site Reliability Engineer</h3>
+                            <span class="text-xs font-bold text-slate-400">2022 — 2024</span>
+                        </div>
+                        <p class="text-primary font-bold text-sm mb-3">ComplyAdvantage, UK</p>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">Managed multi-cloud EKS/GKE estates. Reduced deployment times by 25% through standardized GitOps pipelines with ArgoCD and Harbor.</p>
+                        <div class="flex gap-2">
+                            <span class="tag-pill">ArgoCD</span>
+                            <span class="tag-pill">Istio</span>
+                            <span class="tag-pill">GCP</span>
+                        </div>
+                    </div>
+
+                    <div class="reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-satoshi font-bold text-lg">Associate DevOps Consultant</h3>
+                            <span class="text-xs font-bold text-slate-400">2019 — 2022</span>
+                        </div>
+                        <p class="text-primary font-bold text-sm mb-3">Amazon Web Services (AWS)</p>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">Guided enterprise financial customers in cloud adoption. Developed serverless ML solutions and automated EKS cluster management.</p>
+                        <div class="flex gap-2">
+                            <span class="tag-pill">AWS</span>
+                            <span class="tag-pill">Serverless</span>
+                            <span class="tag-pill">EKS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <span class="editorial-label mb-6">—— EDUCATION & CERTIFICATIONS</span>
+                <div class="timeline-line">
+                    <div class="mb-12 reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-satoshi font-bold text-lg">B.Eng. Telecommunication & Electronics</h3>
+                            <span class="text-xs font-bold text-slate-400">2016</span>
+                        </div>
+                        <p class="text-primary font-bold text-sm mb-3">Suhag University, Egypt</p>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">Graduated 10th in class. Final project on IoT Smart Car tracking system (Linux-based) received an A grade.</p>
+                        <span class="tag-pill">GPA: 2.95 (B-)</span>
+                    </div>
+                    
+                    <div class="reveal">
+                        <div class="timeline-dot"></div>
+                        <h3 class="font-satoshi font-bold text-lg mb-4">Technical Credentials</h3>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="flex items-center gap-3 p-3 bg-surface rounded-lg">
+                                <span class="material-symbols-outlined text-primary text-xl">workspace_premium</span>
+                                <span class="text-xs font-bold">AWS Certified DevOps Engineer - Professional</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-surface rounded-lg">
+                                <span class="material-symbols-outlined text-primary text-xl">workspace_premium</span>
+                                <span class="text-xs font-bold">Certified Kubernetes Administrator (CKA)</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-surface rounded-lg">
+                                <span class="material-symbols-outlined text-primary text-xl">workspace_premium</span>
+                                <span class="text-xs font-bold">AWS Certified Machine Learning - Specialty</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section-padding px-6 bg-surface-low">
+        <div class="max-w-7xl mx-auto">
+            <span class="editorial-label mb-12">—— SKILLS & EXPERTISE</span>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl border border-surface-container hover:shadow-lg p-8 transition-shadow reveal" data-delay="0">
+                    <h4 class="font-satoshi font-bold border-b pb-4 mb-6">Cloud & IaC</h4>
+                    <div class="space-y-4">
+                        <div class="skill-row flex items-center gap-3 text-sm font-medium">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" class="dev-icon" alt="AWS"> AWS (Expert)
+                        </div>
+                        <div class="skill-row flex items-center gap-3 text-sm font-medium">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" class="dev-icon" alt="GCP"> Google Cloud
+                        </div>
+                        <div class="skill-row flex items-center gap-3 text-sm font-medium">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" class="dev-icon" alt="Terraform"> Terraform
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl border border-surface-container hover:shadow-lg p-8 transition-shadow reveal" data-delay="100">
+                    <h4 class="font-satoshi font-bold border-b pb-4 mb-6">Orchestration</h4>
+                    <div class="space-y-4">
+                        <div class="skill-row flex items-center gap-3 text-sm font-medium">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="dev-icon" alt="K8s"> Kubernetes
+                        </div>
+                        <div class="skill-row flex items-center gap-3 text-sm font-medium">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="dev-icon" alt="Docker"> Docker
+                        </div>
+                        <div class="skill-row flex items-center gap-3 text-sm font-medium">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" class="dev-icon" alt="Jenkins"> Jenkins / GitLab
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl border border-surface-container hover:shadow-lg p-8 transition-shadow reveal" data-delay="200">
+                    <h4 class="font-satoshi font-bold border-b pb-4 mb-6">Automation</h4>
+                    <div class="space-y-4">
+                        <div class="skill-row flex items-center gap-3 text-sm font-medium">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="dev-icon" alt="Python"> Python
+                        </div>
+                        <div class="skill-row flex items-center gap-3 text-sm font-medium">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" class="dev-icon" alt="Bash"> Bash Scripting
+                        </div>
+                        <div class="skill-row flex items-center gap-3 text-sm font-medium">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg" class="dev-icon" alt="Ansible"> Ansible
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl border border-surface-container hover:shadow-lg p-8 transition-shadow reveal" data-delay="300">
+                    <h4 class="font-satoshi font-bold border-b pb-4 mb-6">Observability</h4>
+                    <div class="space-y-4">
+                        <div class="skill-row flex items-center gap-3 text-sm font-medium">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" class="dev-icon" alt="Prometheus"> Prometheus
+                        </div>
+                        <div class="skill-row flex items-center gap-3 text-sm font-medium">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" class="dev-icon" alt="Grafana"> Grafana
+                        </div>
+                        <div class="skill-row flex items-center gap-3 text-sm font-medium">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" class="dev-icon" alt="Redis"> Redis & Caching
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding px-6 bg-white">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+            <div class="reveal">
+                <span class="editorial-label mb-4">—— GET IN TOUCH</span>
+                <h2 class="font-satoshi text-5xl font-extrabold tracking-tight mb-10 leading-tight">Let's build something great together.</h2>
+                <div class="space-y-8 mb-10">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-primary-light text-primary flex items-center justify-center">
+                            <span class="material-symbols-outlined">location_on</span>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase">Location</p>
+                            <p class="font-bold">London, United Kingdom</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-primary-light text-primary flex items-center justify-center">
+                            <span class="material-symbols-outlined">mail</span>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase">Email</p>
+                            <p class="font-bold">abdelmohaimene@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <a href="https://linkedin.com/in/abdelmohaimen" target="_blank" class="w-12 h-12 border rounded-lg flex items-center justify-center hover:text-primary hover:border-primary-container transition-all">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" class="w-5 h-5" alt="LinkedIn">
+                    </a>
+                    <a href="#" class="w-12 h-12 border rounded-lg flex items-center justify-center hover:text-primary hover:border-primary-container transition-all">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="w-5 h-5" alt="GitHub">
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-surface-low rounded-2xl border p-10 reveal">
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 block">Name</label>
+                            <input type="text" name="name" required class="bg-white border border-surface-container rounded-lg p-3 text-sm w-full focus:ring-2 focus:ring-primary-container focus:border-transparent outline-none">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 block">Email</label>
+                            <input type="email" name="email" required class="bg-white border border-surface-container rounded-lg p-3 text-sm w-full focus:ring-2 focus:ring-primary-container focus:border-transparent outline-none">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 block">Subject</label>
+                        <input type="text" name="subject" required class="bg-white border border-surface-container rounded-lg p-3 text-sm w-full focus:ring-2 focus:ring-primary-container focus:border-transparent outline-none">
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 block">Message</label>
+                        <textarea name="message" rows="5" required class="bg-white border border-surface-container rounded-lg p-3 text-sm w-full focus:ring-2 focus:ring-primary-container focus:border-transparent outline-none"></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn" class="gradient-primary text-white w-full py-4 rounded-lg font-satoshi font-bold flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
+                        Send Message <span class="material-symbols-outlined">send</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-surface py-12 border-t border-slate-100">
+        <div class="flex flex-col items-center gap-6">
+            <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400">
+                © 2026 Abdelmohaimen Mohamed · Built with Cloud Native Spirit
+            </p>
+            <div class="flex gap-12 text-slate-400 font-mono text-xs uppercase tracking-widest">
+                <a href="#" class="hover:text-primary transition-colors">GitHub</a>
+                <a href="https://linkedin.com/in/abdelmohaimen" class="hover:text-primary transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-primary transition-colors">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. TYPEWRITER ROTATOR
+        const words = ["the Cloud", "Kubernetes", "AWS Systems", "DevOps Culture", "Automation"];
+        let wordIdx = 0;
+        const rotator = document.getElementById('word-rotator');
+
+        setInterval(() => {
+            rotator.style.opacity = 0;
+            setTimeout(() => {
+                wordIdx = (wordIdx + 1) % words.length;
+                rotator.textContent = words[wordIdx];
+                rotator.style.opacity = 1;
+            }, 300);
+        }, 2200);
+
+        // 2. SCROLL SPY
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const scrollSpy = () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - sectionHeight / 3) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', scrollSpy);
+
+        // 3. COUNTER ANIMATION
+        const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+        const animateCounters = () => {
+            const counters = document.querySelectorAll('.stat-counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.dataset.target);
+                let start = 0;
+                const duration = 1800;
+                let startTime = null;
+
+                const step = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = Math.min((timestamp - startTime) / duration, 1);
+                    const current = Math.floor(easeOutCubic(progress) * target);
+                    counter.textContent = current + "+";
+                    if (progress < 1) requestAnimationFrame(step);
+                };
+                requestAnimationFrame(step);
+            });
+        };
+
+        // 4. SCROLL REVEAL
+        const revealCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.dataset.delay || 0;
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, delay);
+                }
+            });
+        };
+        const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // 5. MOBILE NAV TOGGLE
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const expanded = mobileMenu.classList.contains('hidden') ? 'false' : 'true';
+            mobileBtn.setAttribute('aria-expanded', expanded);
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // 6. FORM HANDLER
+        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = form.email.value;
+            if (!email.includes('@')) return;
+
+            const originalContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = "✓ Message Sent!";
+            submitBtn.style.backgroundColor = "#10b981";
+            submitBtn.style.backgroundImage = "none";
+            
+            setTimeout(() => {
+                form.reset();
+                submitBtn.innerHTML = originalContent;
+                submitBtn.style.backgroundColor = "";
+                submitBtn.style.backgroundImage = "";
+            }, 3000);
+        });
+
+        // 7. DEVICON FALLBACK
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = function() {
+                const alt = this.alt || 'TC';
+                const initials = alt.substring(0, 2).toUpperCase();
+                const svg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='10' fill='%23e8f8f5'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='8' font-weight='bold' fill='%23007a69'%3E${initials}%3C/text%3E%3C/svg%3E`;
+                this.src = svg;
+            };
+        });
+
+        document.addEventListener('DOMContentLoaded', animateCounters);
+    </script>
+</body>
+</html>
